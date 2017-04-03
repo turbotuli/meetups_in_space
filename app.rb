@@ -35,3 +35,12 @@ end
 get '/meetups' do
   erb :'meetups/index'
 end
+
+get '/meetups/:id' do
+
+  erb :'meetups/view'
+end
+
+get '/meetups/new' do
+  erb :'meetups/new'
+end

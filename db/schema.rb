@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,10 +10,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140606200404) do
+ActiveRecord::Schema.define(version: 20170403172603) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "attendees", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "meetup_id"
+    t.index ["user_id", "meetup_id"], name: "index_attendees_on_user_id_and_meetup_id", unique: true, using: :btree
+  end
+
+  create_table "meetups", force: :cascade do |t|
+    t.integer  "creator_id",  null: false
+    t.string   "name",        null: false
+    t.string   "description", null: false
+    t.string   "location",    null: false
+    t.datetime "date",        null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "provider",   null: false
@@ -24,8 +39,7 @@ ActiveRecord::Schema.define(version: 20140606200404) do
     t.string   "avatar_url", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
   end
-
-  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true, using: :btree
 
 end
