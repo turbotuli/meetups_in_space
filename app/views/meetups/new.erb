@@ -1,0 +1,19 @@
+<form action="/meetups" method="post" id="meetups">
+  <fieldset>
+    <legend>New Meetup</legend>
+    <label for="name">Name</label>
+    <input id="name" name="name" type="text" value="<%= @name %>" autofocus></input>
+    <label for="location">Location</label>
+    <input id="location" name="location" type="text" value="<%= @location %>"></input>
+    <label for="description">Description</label>
+    <input id="description" name="description" value="<%= @description %>" type="text"></input>
+    <label for="date">Date</label>
+    <input id="date" name="date" type="text" value="<%= @date %>"></input>
+    <input class="button" id="create-button" type="submit" value="Create"></input>
+  </fieldset>
+</form>
+<% if !@errors.nil? %>
+  <% @errors.each do |error| %>
+      <p><%= error %></p>
+  <% end %>
+<% end %>

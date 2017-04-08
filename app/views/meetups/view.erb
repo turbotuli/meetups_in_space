@@ -1,0 +1,33 @@
+<h1><%= @meetup.name %></h1>
+<ul>
+  <li>Description: <%= @meetup.description %></li>
+  <li>Location: <%= @meetup.location %></li>
+  <li>Created by: <%= @creator %></li>
+</ul>
+<% if @join  %>
+<form action="/meetups/<%= @meetup.id %>" method="post" id="meetups">
+  <input class="button" type="submit" value="Join"></input>
+<% end %>
+<% if @leave %>
+<form action="/meetups/<%= @meetup.id %>" method="post" id="meetups">
+  <input class="button" type="submit" value="Leave"></input>
+<% end %>
+<% if @edit %>
+  <form action="/meetups/edit/<%= @meetup.id %>" method="get" id="meetups">
+    <input class="button" type="submit" value="Edit"></input>
+  </form>
+  <form action="/meetups/<%= @meetup.id %>" method="post" id="meetups">
+    <input type="hidden" name="_method" value="DELETE">
+    <input class="button" type="submit" value="Delete"></input>
+  </form>
+<% end %>
+<h2>Attendees</h2>
+<ol id="attendees">
+  <% @attendees.each do |attendee| %>
+      <li>
+        <img id="icon-<%= attendee.id %>" src="<%= attendee.user.avatar_url %>"
+          width="16" height="16">
+        <%= attendee.user.username %>
+      </li>
+  <% end %>
+</ol>

@@ -1,1 +1,21 @@
 <h1>Meetups</h1>
+
+<table>
+  <tr>
+    <th class="table-header">Name</th>
+    <th class="table-header">Date</th>
+  </tr>
+  <% if !@meetups.nil? %>
+    <% @meetups.each do |meetup| %>
+      <tr>
+        <td><a href="/meetups/<%= meetup.id %>"><%= meetup.name %></a></td>
+        <td><%= meetup.date.strftime('%x') %></td>
+      </tr>
+      <% end %>
+  <% end %>
+  <tr>
+    <td></td>
+    <td></td>
+  </tr>
+</table>
+<a href="meetups/new">New Meetup</a>
